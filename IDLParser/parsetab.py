@@ -5,9 +5,9 @@ _tabversion = '3.2'
 
 _lr_method = 'LALR'
 
-_lr_signature = '\xbb1\xf9\x879\x04\x8d;g\xbcr\xa4^\xc1\x9dh'
+_lr_signature = "\x1a\xfe\x9d il'a4\xa4(\xeb\x88mm\xc9"
     
-_lr_action_items = {'Map':([4,15,16,17,22,],[6,6,6,6,6,]),'GT':([8,9,10,12,20,21,23,24,25,26,],[-7,-6,-8,-5,23,24,-9,-10,26,-11,]),'Set':([4,15,16,17,22,],[7,7,7,7,7,]),'String':([4,15,16,17,22,],[8,8,8,8,8,]),'SEMICOLON':([1,],[4,]),'intconstant':([0,5,],[1,1,]),'Double':([4,15,16,17,22,],[9,9,9,9,9,]),'Object':([4,15,16,17,22,],[10,10,10,10,10,]),'List':([4,15,16,17,22,],[11,11,11,11,11,]),'LT':([6,7,11,],[15,16,17,]),'Boolean':([4,15,16,17,22,],[12,12,12,12,12,]),'COMMA':([2,3,8,9,10,12,14,18,19,23,24,26,],[5,-3,-7,-6,-8,-5,-4,-2,22,-9,-10,-11,]),'identifier':([8,9,10,12,13,23,24,26,],[-7,-6,-8,-5,18,-9,-10,-11,]),'$end':([2,3,14,18,],[0,-3,-4,-2,]),}
+_lr_action_items = {'Map':([8,21,22,23,28,],[11,11,11,11,11,]),'GT':([13,14,15,17,26,27,29,30,31,32,],[-8,-7,-9,-6,29,30,-10,-11,32,-12,]),'Set':([8,21,22,23,28,],[12,12,12,12,12,]),'String':([8,21,22,23,28,],[13,13,13,13,13,]),'SEMICOLON':([5,10,],[8,20,]),'intconstant':([4,9,],[5,5,]),'Double':([8,21,22,23,28,],[14,14,14,14,14,]),'Object':([8,21,22,23,28,],[15,15,15,15,15,]),'List':([8,21,22,23,28,],[16,16,16,16,16,]),'LT':([11,12,16,],[21,22,23,]),'Boolean':([8,21,22,23,28,],[17,17,17,17,17,]),'COMMA':([6,7,13,14,15,17,19,24,25,29,30,32,],[9,-3,-8,-7,-9,-6,-4,-2,28,-10,-11,-12,]),'LPAREN':([3,6,7,19,24,],[4,10,-3,-4,-2,]),'identifier':([0,2,13,14,15,17,18,29,30,32,],[2,3,-8,-7,-9,-6,24,-10,-11,-12,]),'$end':([1,20,],[0,-5,]),}
 
 _lr_action = { }
 for _k, _v in _lr_action_items.items():
@@ -16,7 +16,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'declaration':([0,5,],[3,14,]),'type':([4,15,16,17,22,],[13,19,20,21,25,]),'declaration_list':([0,],[2,]),}
+_lr_goto_items = {'function':([0,],[1,]),'declaration':([4,9,],[7,19,]),'type':([8,21,22,23,28,],[18,25,26,27,31,]),'declaration_list':([4,],[6,]),}
 
 _lr_goto = { }
 for _k, _v in _lr_goto_items.items():
@@ -25,11 +25,12 @@ for _k, _v in _lr_goto_items.items():
        _lr_goto[_x][_k] = _y
 del _lr_goto_items
 _lr_productions = [
-  ("S' -> declaration_list","S'",1,None,None,None),
+  ("S' -> function","S'",1,None,None,None),
   ('assignment -> identifier ASSIGN intconstant','assignment',3,'p_assignment','<stdin>',2),
   ('declaration -> intconstant SEMICOLON type identifier','declaration',4,'p_declaration','<stdin>',2),
   ('declaration_list -> declaration','declaration_list',1,'p_declaration_list','<stdin>',2),
   ('declaration_list -> declaration_list COMMA declaration','declaration_list',3,'p_declaration_list','<stdin>',3),
+  ('function -> identifier identifier LPAREN declaration_list LPAREN SEMICOLON','function',6,'p_function','<stdin>',2),
   ('type -> Boolean','type',1,'p_type','<stdin>',2),
   ('type -> Double','type',1,'p_type','<stdin>',3),
   ('type -> String','type',1,'p_type','<stdin>',4),

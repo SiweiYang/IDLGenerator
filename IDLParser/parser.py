@@ -7,6 +7,10 @@ def p_assignment(p):
   'assignment : identifier ASSIGN intconstant'
   p[0] = (p[1], p[3])
 
+def p_basic_type(p):
+  'type : identifier'
+  p[0] = p[1]
+
 def p_type(p):
   '''type : Boolean
   | Double

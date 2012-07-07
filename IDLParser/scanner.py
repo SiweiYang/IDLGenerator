@@ -37,7 +37,10 @@ tokens = list(reserved.values()) + [
 #  'comment',
 #  'unixcomment',
   'SEMICOLON',
+  'COLON',
   'COMMA',
+  'LPAREN',
+  'RPAREN',
   'ASSIGN',
   'GT',
   'LT',
@@ -57,7 +60,10 @@ t_intconstant   = r'[+-]?[0-9]+'
 #t_comment       = r'//[^\n]*'
 #t_unixcomment   = r'\#[^\n]*'
 t_SEMICOLON     = r':'
+t_COLON     = r';'
 t_COMMA         = r','
+t_LPAREN         = r'\('
+t_RPAREN         = r'\)'
 t_ASSIGN        = r'\='
 t_GT            = r'>'
 t_LT            = r'<'

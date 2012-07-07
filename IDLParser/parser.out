@@ -1,0 +1,411 @@
+Created by PLY version 3.4 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    Index
+    Enum
+    i64
+    RPAREN
+    struct
+    service
+    namespace
+    COLON
+    import
+    include
+    void
+    RangeIndex
+    post
+    Identifier
+    response
+    i32
+    persistent
+
+Grammar
+
+Rule 0     S' -> function
+Rule 1     assignment -> identifier ASSIGN intconstant
+Rule 2     declaration -> intconstant SEMICOLON type identifier
+Rule 3     declaration_list -> declaration
+Rule 4     declaration_list -> declaration_list COMMA declaration
+Rule 5     function -> identifier identifier LPAREN declaration_list LPAREN SEMICOLON
+Rule 6     type -> Boolean
+Rule 7     type -> Double
+Rule 8     type -> String
+Rule 9     type -> Object
+Rule 10    type -> Set LT type GT
+Rule 11    type -> List LT type GT
+Rule 12    type -> Map LT type COMMA type GT
+
+Terminals, with rules where they appear
+
+ASSIGN               : 1
+Boolean              : 6
+COLON                : 
+COMMA                : 4 12
+Double               : 7
+Enum                 : 
+GT                   : 10 11 12
+Identifier           : 
+Index                : 
+LPAREN               : 5 5
+LT                   : 10 11 12
+List                 : 11
+Map                  : 12
+Object               : 9
+RPAREN               : 
+RangeIndex           : 
+SEMICOLON            : 2 5
+Set                  : 10
+String               : 8
+error                : 
+i32                  : 
+i64                  : 
+identifier           : 1 2 5 5
+import               : 
+include              : 
+intconstant          : 1 2
+namespace            : 
+persistent           : 
+post                 : 
+response             : 
+service              : 
+struct               : 
+void                 : 
+
+Nonterminals, with rules where they appear
+
+assignment           : 
+declaration          : 3 4
+declaration_list     : 4 5
+function             : 0
+type                 : 2 10 11 12 12
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . function
+    (5) function -> . identifier identifier LPAREN declaration_list LPAREN SEMICOLON
+
+    identifier      shift and go to state 2
+
+    function                       shift and go to state 1
+
+state 1
+
+    (0) S' -> function .
+
+
+
+state 2
+
+    (5) function -> identifier . identifier LPAREN declaration_list LPAREN SEMICOLON
+
+    identifier      shift and go to state 3
+
+
+state 3
+
+    (5) function -> identifier identifier . LPAREN declaration_list LPAREN SEMICOLON
+
+    LPAREN          shift and go to state 4
+
+
+state 4
+
+    (5) function -> identifier identifier LPAREN . declaration_list LPAREN SEMICOLON
+    (3) declaration_list -> . declaration
+    (4) declaration_list -> . declaration_list COMMA declaration
+    (2) declaration -> . intconstant SEMICOLON type identifier
+
+    intconstant     shift and go to state 5
+
+    declaration                    shift and go to state 7
+    declaration_list               shift and go to state 6
+
+state 5
+
+    (2) declaration -> intconstant . SEMICOLON type identifier
+
+    SEMICOLON       shift and go to state 8
+
+
+state 6
+
+    (5) function -> identifier identifier LPAREN declaration_list . LPAREN SEMICOLON
+    (4) declaration_list -> declaration_list . COMMA declaration
+
+    LPAREN          shift and go to state 10
+    COMMA           shift and go to state 9
+
+
+state 7
+
+    (3) declaration_list -> declaration .
+
+    LPAREN          reduce using rule 3 (declaration_list -> declaration .)
+    COMMA           reduce using rule 3 (declaration_list -> declaration .)
+
+
+state 8
+
+    (2) declaration -> intconstant SEMICOLON . type identifier
+    (6) type -> . Boolean
+    (7) type -> . Double
+    (8) type -> . String
+    (9) type -> . Object
+    (10) type -> . Set LT type GT
+    (11) type -> . List LT type GT
+    (12) type -> . Map LT type COMMA type GT
+
+    Boolean         shift and go to state 17
+    Double          shift and go to state 14
+    String          shift and go to state 13
+    Object          shift and go to state 15
+    Set             shift and go to state 12
+    List            shift and go to state 16
+    Map             shift and go to state 11
+
+    type                           shift and go to state 18
+
+state 9
+
+    (4) declaration_list -> declaration_list COMMA . declaration
+    (2) declaration -> . intconstant SEMICOLON type identifier
+
+    intconstant     shift and go to state 5
+
+    declaration                    shift and go to state 19
+
+state 10
+
+    (5) function -> identifier identifier LPAREN declaration_list LPAREN . SEMICOLON
+
+    SEMICOLON       shift and go to state 20
+
+
+state 11
+
+    (12) type -> Map . LT type COMMA type GT
+
+    LT              shift and go to state 21
+
+
+state 12
+
+    (10) type -> Set . LT type GT
+
+    LT              shift and go to state 22
+
+
+state 13
+
+    (8) type -> String .
+
+    GT              reduce using rule 8 (type -> String .)
+    COMMA           reduce using rule 8 (type -> String .)
+    identifier      reduce using rule 8 (type -> String .)
+
+
+state 14
+
+    (7) type -> Double .
+
+    GT              reduce using rule 7 (type -> Double .)
+    COMMA           reduce using rule 7 (type -> Double .)
+    identifier      reduce using rule 7 (type -> Double .)
+
+
+state 15
+
+    (9) type -> Object .
+
+    GT              reduce using rule 9 (type -> Object .)
+    COMMA           reduce using rule 9 (type -> Object .)
+    identifier      reduce using rule 9 (type -> Object .)
+
+
+state 16
+
+    (11) type -> List . LT type GT
+
+    LT              shift and go to state 23
+
+
+state 17
+
+    (6) type -> Boolean .
+
+    GT              reduce using rule 6 (type -> Boolean .)
+    COMMA           reduce using rule 6 (type -> Boolean .)
+    identifier      reduce using rule 6 (type -> Boolean .)
+
+
+state 18
+
+    (2) declaration -> intconstant SEMICOLON type . identifier
+
+    identifier      shift and go to state 24
+
+
+state 19
+
+    (4) declaration_list -> declaration_list COMMA declaration .
+
+    LPAREN          reduce using rule 4 (declaration_list -> declaration_list COMMA declaration .)
+    COMMA           reduce using rule 4 (declaration_list -> declaration_list COMMA declaration .)
+
+
+state 20
+
+    (5) function -> identifier identifier LPAREN declaration_list LPAREN SEMICOLON .
+
+    $end            reduce using rule 5 (function -> identifier identifier LPAREN declaration_list LPAREN SEMICOLON .)
+
+
+state 21
+
+    (12) type -> Map LT . type COMMA type GT
+    (6) type -> . Boolean
+    (7) type -> . Double
+    (8) type -> . String
+    (9) type -> . Object
+    (10) type -> . Set LT type GT
+    (11) type -> . List LT type GT
+    (12) type -> . Map LT type COMMA type GT
+
+    Boolean         shift and go to state 17
+    Double          shift and go to state 14
+    String          shift and go to state 13
+    Object          shift and go to state 15
+    Set             shift and go to state 12
+    List            shift and go to state 16
+    Map             shift and go to state 11
+
+    type                           shift and go to state 25
+
+state 22
+
+    (10) type -> Set LT . type GT
+    (6) type -> . Boolean
+    (7) type -> . Double
+    (8) type -> . String
+    (9) type -> . Object
+    (10) type -> . Set LT type GT
+    (11) type -> . List LT type GT
+    (12) type -> . Map LT type COMMA type GT
+
+    Boolean         shift and go to state 17
+    Double          shift and go to state 14
+    String          shift and go to state 13
+    Object          shift and go to state 15
+    Set             shift and go to state 12
+    List            shift and go to state 16
+    Map             shift and go to state 11
+
+    type                           shift and go to state 26
+
+state 23
+
+    (11) type -> List LT . type GT
+    (6) type -> . Boolean
+    (7) type -> . Double
+    (8) type -> . String
+    (9) type -> . Object
+    (10) type -> . Set LT type GT
+    (11) type -> . List LT type GT
+    (12) type -> . Map LT type COMMA type GT
+
+    Boolean         shift and go to state 17
+    Double          shift and go to state 14
+    String          shift and go to state 13
+    Object          shift and go to state 15
+    Set             shift and go to state 12
+    List            shift and go to state 16
+    Map             shift and go to state 11
+
+    type                           shift and go to state 27
+
+state 24
+
+    (2) declaration -> intconstant SEMICOLON type identifier .
+
+    LPAREN          reduce using rule 2 (declaration -> intconstant SEMICOLON type identifier .)
+    COMMA           reduce using rule 2 (declaration -> intconstant SEMICOLON type identifier .)
+
+
+state 25
+
+    (12) type -> Map LT type . COMMA type GT
+
+    COMMA           shift and go to state 28
+
+
+state 26
+
+    (10) type -> Set LT type . GT
+
+    GT              shift and go to state 29
+
+
+state 27
+
+    (11) type -> List LT type . GT
+
+    GT              shift and go to state 30
+
+
+state 28
+
+    (12) type -> Map LT type COMMA . type GT
+    (6) type -> . Boolean
+    (7) type -> . Double
+    (8) type -> . String
+    (9) type -> . Object
+    (10) type -> . Set LT type GT
+    (11) type -> . List LT type GT
+    (12) type -> . Map LT type COMMA type GT
+
+    Boolean         shift and go to state 17
+    Double          shift and go to state 14
+    String          shift and go to state 13
+    Object          shift and go to state 15
+    Set             shift and go to state 12
+    List            shift and go to state 16
+    Map             shift and go to state 11
+
+    type                           shift and go to state 31
+
+state 29
+
+    (10) type -> Set LT type GT .
+
+    GT              reduce using rule 10 (type -> Set LT type GT .)
+    COMMA           reduce using rule 10 (type -> Set LT type GT .)
+    identifier      reduce using rule 10 (type -> Set LT type GT .)
+
+
+state 30
+
+    (11) type -> List LT type GT .
+
+    GT              reduce using rule 11 (type -> List LT type GT .)
+    COMMA           reduce using rule 11 (type -> List LT type GT .)
+    identifier      reduce using rule 11 (type -> List LT type GT .)
+
+
+state 31
+
+    (12) type -> Map LT type COMMA type . GT
+
+    GT              shift and go to state 32
+
+
+state 32
+
+    (12) type -> Map LT type COMMA type GT .
+
+    GT              reduce using rule 12 (type -> Map LT type COMMA type GT .)
+    COMMA           reduce using rule 12 (type -> Map LT type COMMA type GT .)
+    identifier      reduce using rule 12 (type -> Map LT type COMMA type GT .)
+
