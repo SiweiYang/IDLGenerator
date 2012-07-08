@@ -4,8 +4,6 @@ from ply.lex import lex
 
 reserved = {
   "namespace"   : 'namespace',
-  "persistent"  : 'persistent',
-  "response"    : 'response',
   "include"     : 'include',
   "import"      : 'import',
   "void"        : 'void',
@@ -19,9 +17,11 @@ reserved = {
   "list"        : 'List',
   "set"         : 'Set',
   "enum"        : 'Enum',
-  "post"        : 'post',
-  "struct"      : 'struct',
-  "service"     : 'service',
+  "post"        : 'Post',
+  "struct"      : 'Struct',
+  "persistent"  : 'Persistent',
+  "response"    : 'Response',
+  "service"     : 'Service',
   "identifier"  : 'Identifier',
   "index"       : 'Index',
   "range-index" : 'RangeIndex'
@@ -41,9 +41,12 @@ tokens = list(reserved.values()) + [
   'COMMA',
   'LPAREN',
   'RPAREN',
+  'LCURLY',
+  'RCURLY',
   'ASSIGN',
-  'GT',
   'LT',
+  'GT',
+
 #  'symbol'
 ]
 
@@ -64,12 +67,14 @@ t_COLON     = r';'
 t_COMMA         = r','
 t_LPAREN         = r'\('
 t_RPAREN         = r'\)'
+t_LCURLY         = r'{'
+t_RCURLY         = r'}'
 t_ASSIGN        = r'\='
 t_GT            = r'>'
 t_LT            = r'<'
 #t_symbol        = r'[:;\,\{\}\(\)\=<>\[\]]'
 
-t_ignore        = r'[ \t\r\n]+'
+t_ignore        = '[ \t\r\n]+'
 
 lexer = lex()
 
