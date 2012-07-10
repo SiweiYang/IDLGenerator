@@ -7,6 +7,18 @@ def p_assignment(p):
   'assignment : identifier ASSIGN intconstant'
   p[0] = (p[1], p[3])
 
+def p_assignment_list(p):
+  '''assignment_list : assignment
+                     | assignment_list COMMA assignment'''
+  if len(p) == 2:
+    p[0] = [p[1]]
+  if len(p) == 3:
+    p[0] = p[1] + [p[2]]
+
+def p_enum(p):
+  'enum : Enum identifier LCURLY assignment_list RCURLY'
+  p[0] = (p[2], p[4])
+
 def p_custom_type(p):
   'type : identifier'
   p[0] = p[1]
@@ -27,8 +39,13 @@ def p_type(p):
     p[0] = (p[1], p[3], p[5])
 
 def p_declaration(p):
-  'declaration : intconstant SEMICOLON type identifier'
-  p[0] = (p[1], p[3])
+  '''declaration : intconstant SEMICOLON type identifier
+                 | intconstant SEMICOLON RangeIndex type identifier
+                 | intconstant SEMICOLON Index type identifier'''
+  if len(p) == 5:
+    p[0] = (p[4], p[1], p[3])
+  if len(p) == 6:
+    p[0] = (p[5], p[1], p[4], p[3])
 
 def p_declaration_list(p):
   '''declaration_list : declaration
@@ -38,6 +55,9 @@ def p_declaration_list(p):
   if len(p) == 4:
     p[0] = p[1] + [p[3]]
 
+def p_struct_annotation(p):
+  '''struct_annotation : Struct identifier'''
+  p[0] = (p[2])
 
 def p_struct_annotation_response(p):
   '''struct_annotation : Struct identifier Response'''
@@ -55,12 +75,12 @@ def p_struct_annotation_persistent(p):
     p[0] = (p[2], 'persistent', p[7], p[5])
 
 def p_struct_basic(p):
-  '''struct_basic : struct_annotation LPAREN RPAREN COLON
-                  | struct_annotation LPAREN declaration_list RPAREN COLON'''
-  if len(p) == 5:
+  '''struct : struct_annotation LCURLY RCURLY
+            | struct_annotation LCURLY declaration_list RCURLY'''
+  if len(p) == 4:
     p[0] = (p[1], [])
-  if len(p) == 6:
-    p[0] = (p[1], p[4])
+  if len(p) == 5:
+    p[0] = (p[1], p[3])
 
 def p_function_basic(p):
   '''function_basic : identifier identifier LPAREN RPAREN COLON
@@ -90,14 +110,41 @@ def p_service(p):
   'service : Service identifier LCURLY function_list RCURLY'
   p[0] = (p[2], p[4])
 
+def p_document(p):
+  '''document : enum
+              | struct
+              | service
+              | document document'''
+  if len(p) == 2:
+    p[0] = [p[1]]
+  if len(p) == 3:
+    p[0] = p[1] + p[2]
+
 def p_error(t):
   print("Syntax error at '%s'" % t.value)
 
-start = 'service'
+start = 'document'
 parser = yacc()
 
 if __name__ == '__main__':
-  print parser.parse('''
+  ast = parser.parse('''
+  struct SetRouteResponse {
+    1: Status status
+  }
+
+  struct SetRouteEndpointResponse {
+    1: Status status
+  }
+
+  struct GetRouteResponse {
+    1: Status status,
+    2: RoutingTableEntry route
+  }
+
+  struct ListRoutesResponse {
+    1: Status status,
+    2: list<RoutingTableEntry> routes
+  }
   service Routing {
     post SetRouteResponse setRoute(1: RoutingTableEntry route);
     ListRoutesResponse listRoutes();
@@ -107,3 +154,6 @@ if __name__ == '__main__':
     ListRoutesResponse listRoutes();
   }
   ''')
+
+  for item in ast:
+    print item

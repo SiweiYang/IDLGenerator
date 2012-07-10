@@ -5,9 +5,9 @@ _tabversion = '3.2'
 
 _lr_method = 'LALR'
 
-_lr_signature = '\xecW\xfd\x88\x9d\xc8t\xb2\xdb\x8b\x0f.r\xcd:\xa5'
+_lr_signature = '\x1a]5BS\xc1\x83\x0b\x84\xbdz\xa4o<R\xc3'
     
-_lr_action_items = {'Boolean':([20,34,35,36,41,],[29,29,29,29,29,]),'Map':([20,34,35,36,41,],[23,23,23,23,23,]),'GT':([25,26,27,29,30,39,40,42,43,44,45,],[-5,-4,-6,-3,-2,42,43,-7,-8,45,-9,]),'Set':([20,34,35,36,41,],[24,24,24,24,24,]),'RPAREN':([14,17,18,33,37,],[15,21,-11,-12,-10,]),'SEMICOLON':([16,],[20,]),'Service':([0,],[2,]),'RCURLY':([5,6,7,10,12,19,32,],[-18,11,-16,-17,-15,-13,-14,]),'intconstant':([14,22,],[16,16,]),'Double':([20,34,35,36,41,],[26,26,26,26,26,]),'Object':([20,34,35,36,41,],[27,27,27,27,27,]),'List':([20,34,35,36,41,],[28,28,28,28,28,]),'LCURLY':([3,],[4,]),'LT':([23,24,28,],[34,35,36,]),'String':([20,34,35,36,41,],[25,25,25,25,25,]),'COLON':([15,21,],[19,32,]),'LPAREN':([13,],[14,]),'COMMA':([17,18,25,26,27,29,30,33,37,38,42,43,45,],[22,-11,-5,-4,-6,-3,-2,-12,-10,41,-7,-8,-9,]),'Post':([4,5,6,7,10,12,19,32,],[8,-18,8,-16,-17,-15,-13,-14,]),'identifier':([2,4,5,6,7,8,9,10,12,19,20,25,26,27,29,30,31,32,34,35,36,41,42,43,45,],[3,9,-18,9,-16,9,13,-17,-15,-13,30,-5,-4,-6,-3,-2,37,-14,30,30,30,30,-7,-8,-9,]),'$end':([1,11,],[0,-19,]),}
+_lr_action_items = {'Index':([30,],[41,]),'Object':([30,41,48,58,59,60,76,],[46,46,46,46,46,46,46,]),'Struct':([0,1,2,3,7,9,16,31,35,38,],[8,8,-33,-34,-32,8,-23,-24,-31,-4,]),'Service':([0,1,2,3,7,9,16,31,35,38,],[4,4,-33,-34,-32,4,-23,-24,-31,-4,]),'LCURLY':([6,10,11,13,20,21,63,78,],[12,14,15,-18,-20,-19,-21,-22,]),'Map':([30,41,48,58,59,60,76,],[44,44,44,44,44,44,44,]),'RPAREN':([19,52,53,54,62,66,67,71,72,],[-16,-17,63,65,-13,74,-15,-14,78,]),'String':([30,41,48,58,59,60,76,],[43,43,43,43,43,43,43,]),'SEMICOLON':([17,],[30,]),'RCURLY':([12,18,19,22,23,24,27,28,34,36,52,55,56,62,67,71,73,79,],[16,31,-16,-30,35,-28,-2,38,-29,-27,-17,-3,-1,-13,-15,-14,-25,-26,]),'Enum':([0,1,2,3,7,9,16,31,35,38,],[5,5,-33,-34,-32,5,-23,-24,-31,-4,]),'LT':([42,44,47,],[58,59,60,]),'COMMA':([18,19,27,28,43,45,46,49,51,52,53,55,56,62,66,67,69,71,75,77,81,],[32,-16,-2,39,-8,-7,-9,-5,-6,-17,64,-3,-1,-13,32,-15,76,-14,-10,-11,-12,]),'COLON':([65,74,],[73,79,]),'Post':([14,22,23,24,34,36,73,79,],[25,-30,25,-28,-29,-27,-25,-26,]),'ASSIGN':([29,],[40,]),'$end':([1,2,3,7,9,16,31,35,38,],[0,-33,-34,-32,-35,-23,-24,-31,-4,]),'GT':([43,45,46,49,51,68,70,75,77,80,81,],[-8,-7,-9,-5,-6,75,77,-10,-11,81,-12,]),'Double':([30,41,48,58,59,60,76,],[45,45,45,45,45,45,45,]),'List':([30,41,48,58,59,60,76,],[47,47,47,47,47,47,47,]),'Persistent':([13,],[20,]),'RangeIndex':([30,],[48,]),'LPAREN':([20,37,],[33,54,]),'Set':([30,41,48,58,59,60,76,],[42,42,42,42,42,42,42,]),'intconstant':([12,32,40,54,],[17,17,56,17,]),'Response':([13,],[21,]),'Boolean':([30,41,48,58,59,60,76,],[51,51,51,51,51,51,51,]),'identifier':([4,5,8,14,15,22,23,24,25,26,30,33,34,36,39,41,43,45,46,48,49,50,51,57,58,59,60,61,64,73,75,76,77,79,81,],[10,11,13,26,29,-30,26,-28,26,37,49,53,-29,-27,29,49,-8,-7,-9,49,-5,62,-6,67,49,49,49,71,72,-25,-10,49,-11,-26,-12,]),}
 
 _lr_action = { }
 for _k, _v in _lr_action_items.items():
@@ -16,7 +16,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'function':([4,6,],[5,10,]),'service':([0,],[1,]),'function_list':([4,],[6,]),'declaration_list':([14,],[17,]),'function_basic':([4,6,8,],[7,7,12,]),'declaration':([14,22,],[18,33,]),'type':([20,34,35,36,41,],[31,38,39,40,44,]),}
+_lr_goto_items = {'function':([14,23,],[22,34,]),'function_list':([14,],[23,]),'struct':([0,1,9,],[2,2,2,]),'service':([0,1,9,],[3,3,3,]),'assignment':([15,39,],[27,55,]),'enum':([0,1,9,],[7,7,7,]),'declaration_list':([12,54,],[18,66,]),'function_basic':([14,23,25,],[24,24,36,]),'assignment_list':([15,],[28,]),'declaration':([12,32,54,],[19,52,19,]),'struct_annotation':([0,1,9,],[6,6,6,]),'document':([0,1,9,],[1,9,9,]),'type':([30,41,48,58,59,60,76,],[50,57,61,68,69,70,80,]),}
 
 _lr_goto = { }
 for _k, _v in _lr_goto_items.items():
@@ -25,24 +25,40 @@ for _k, _v in _lr_goto_items.items():
        _lr_goto[_x][_k] = _y
 del _lr_goto_items
 _lr_productions = [
-  ("S' -> service","S'",1,None,None,None),
+  ("S' -> document","S'",1,None,None,None),
   ('assignment -> identifier ASSIGN intconstant','assignment',3,'p_assignment','/home/maluuba/PycharmProjects/IDLGenerator/IDLParser/parser.py',7),
-  ('type -> identifier','type',1,'p_custom_type','/home/maluuba/PycharmProjects/IDLGenerator/IDLParser/parser.py',11),
-  ('type -> Boolean','type',1,'p_type','/home/maluuba/PycharmProjects/IDLGenerator/IDLParser/parser.py',15),
-  ('type -> Double','type',1,'p_type','/home/maluuba/PycharmProjects/IDLGenerator/IDLParser/parser.py',16),
-  ('type -> String','type',1,'p_type','/home/maluuba/PycharmProjects/IDLGenerator/IDLParser/parser.py',17),
-  ('type -> Object','type',1,'p_type','/home/maluuba/PycharmProjects/IDLGenerator/IDLParser/parser.py',18),
-  ('type -> Set LT type GT','type',4,'p_type','/home/maluuba/PycharmProjects/IDLGenerator/IDLParser/parser.py',19),
-  ('type -> List LT type GT','type',4,'p_type','/home/maluuba/PycharmProjects/IDLGenerator/IDLParser/parser.py',20),
-  ('type -> Map LT type COMMA type GT','type',6,'p_type','/home/maluuba/PycharmProjects/IDLGenerator/IDLParser/parser.py',21),
-  ('declaration -> intconstant SEMICOLON type identifier','declaration',4,'p_declaration','/home/maluuba/PycharmProjects/IDLGenerator/IDLParser/parser.py',30),
-  ('declaration_list -> declaration','declaration_list',1,'p_declaration_list','/home/maluuba/PycharmProjects/IDLGenerator/IDLParser/parser.py',34),
-  ('declaration_list -> declaration_list COMMA declaration','declaration_list',3,'p_declaration_list','/home/maluuba/PycharmProjects/IDLGenerator/IDLParser/parser.py',35),
-  ('function_basic -> identifier identifier LPAREN RPAREN COLON','function_basic',5,'p_function_basic','/home/maluuba/PycharmProjects/IDLGenerator/IDLParser/parser.py',42),
-  ('function_basic -> identifier identifier LPAREN declaration_list RPAREN COLON','function_basic',6,'p_function_basic','/home/maluuba/PycharmProjects/IDLGenerator/IDLParser/parser.py',43),
-  ('function -> Post function_basic','function',2,'p_function_post','/home/maluuba/PycharmProjects/IDLGenerator/IDLParser/parser.py',50),
-  ('function -> function_basic','function',1,'p_function_post','/home/maluuba/PycharmProjects/IDLGenerator/IDLParser/parser.py',51),
-  ('function_list -> function_list function','function_list',2,'p_function_list','/home/maluuba/PycharmProjects/IDLGenerator/IDLParser/parser.py',58),
-  ('function_list -> function','function_list',1,'p_function_list','/home/maluuba/PycharmProjects/IDLGenerator/IDLParser/parser.py',59),
-  ('service -> Service identifier LCURLY function_list RCURLY','service',5,'p_service','/home/maluuba/PycharmProjects/IDLGenerator/IDLParser/parser.py',66),
+  ('assignment_list -> assignment','assignment_list',1,'p_assignment_list','/home/maluuba/PycharmProjects/IDLGenerator/IDLParser/parser.py',11),
+  ('assignment_list -> assignment_list COMMA assignment','assignment_list',3,'p_assignment_list','/home/maluuba/PycharmProjects/IDLGenerator/IDLParser/parser.py',12),
+  ('enum -> Enum identifier LCURLY assignment_list RCURLY','enum',5,'p_enum','/home/maluuba/PycharmProjects/IDLGenerator/IDLParser/parser.py',19),
+  ('type -> identifier','type',1,'p_custom_type','/home/maluuba/PycharmProjects/IDLGenerator/IDLParser/parser.py',23),
+  ('type -> Boolean','type',1,'p_type','/home/maluuba/PycharmProjects/IDLGenerator/IDLParser/parser.py',27),
+  ('type -> Double','type',1,'p_type','/home/maluuba/PycharmProjects/IDLGenerator/IDLParser/parser.py',28),
+  ('type -> String','type',1,'p_type','/home/maluuba/PycharmProjects/IDLGenerator/IDLParser/parser.py',29),
+  ('type -> Object','type',1,'p_type','/home/maluuba/PycharmProjects/IDLGenerator/IDLParser/parser.py',30),
+  ('type -> Set LT type GT','type',4,'p_type','/home/maluuba/PycharmProjects/IDLGenerator/IDLParser/parser.py',31),
+  ('type -> List LT type GT','type',4,'p_type','/home/maluuba/PycharmProjects/IDLGenerator/IDLParser/parser.py',32),
+  ('type -> Map LT type COMMA type GT','type',6,'p_type','/home/maluuba/PycharmProjects/IDLGenerator/IDLParser/parser.py',33),
+  ('declaration -> intconstant SEMICOLON type identifier','declaration',4,'p_declaration','/home/maluuba/PycharmProjects/IDLGenerator/IDLParser/parser.py',42),
+  ('declaration -> intconstant SEMICOLON RangeIndex type identifier','declaration',5,'p_declaration','/home/maluuba/PycharmProjects/IDLGenerator/IDLParser/parser.py',43),
+  ('declaration -> intconstant SEMICOLON Index type identifier','declaration',5,'p_declaration','/home/maluuba/PycharmProjects/IDLGenerator/IDLParser/parser.py',44),
+  ('declaration_list -> declaration','declaration_list',1,'p_declaration_list','/home/maluuba/PycharmProjects/IDLGenerator/IDLParser/parser.py',51),
+  ('declaration_list -> declaration_list COMMA declaration','declaration_list',3,'p_declaration_list','/home/maluuba/PycharmProjects/IDLGenerator/IDLParser/parser.py',52),
+  ('struct_annotation -> Struct identifier','struct_annotation',2,'p_struct_annotation','/home/maluuba/PycharmProjects/IDLGenerator/IDLParser/parser.py',59),
+  ('struct_annotation -> Struct identifier Response','struct_annotation',3,'p_struct_annotation_response','/home/maluuba/PycharmProjects/IDLGenerator/IDLParser/parser.py',63),
+  ('struct_annotation -> Struct identifier Persistent','struct_annotation',3,'p_struct_annotation_persistent','/home/maluuba/PycharmProjects/IDLGenerator/IDLParser/parser.py',67),
+  ('struct_annotation -> Struct identifier Persistent LPAREN identifier RPAREN','struct_annotation',6,'p_struct_annotation_persistent','/home/maluuba/PycharmProjects/IDLGenerator/IDLParser/parser.py',68),
+  ('struct_annotation -> Struct identifier Persistent LPAREN identifier COMMA identifier RPAREN','struct_annotation',8,'p_struct_annotation_persistent','/home/maluuba/PycharmProjects/IDLGenerator/IDLParser/parser.py',69),
+  ('struct -> struct_annotation LCURLY RCURLY','struct',3,'p_struct_basic','/home/maluuba/PycharmProjects/IDLGenerator/IDLParser/parser.py',78),
+  ('struct -> struct_annotation LCURLY declaration_list RCURLY','struct',4,'p_struct_basic','/home/maluuba/PycharmProjects/IDLGenerator/IDLParser/parser.py',79),
+  ('function_basic -> identifier identifier LPAREN RPAREN COLON','function_basic',5,'p_function_basic','/home/maluuba/PycharmProjects/IDLGenerator/IDLParser/parser.py',86),
+  ('function_basic -> identifier identifier LPAREN declaration_list RPAREN COLON','function_basic',6,'p_function_basic','/home/maluuba/PycharmProjects/IDLGenerator/IDLParser/parser.py',87),
+  ('function -> Post function_basic','function',2,'p_function_post','/home/maluuba/PycharmProjects/IDLGenerator/IDLParser/parser.py',94),
+  ('function -> function_basic','function',1,'p_function_post','/home/maluuba/PycharmProjects/IDLGenerator/IDLParser/parser.py',95),
+  ('function_list -> function_list function','function_list',2,'p_function_list','/home/maluuba/PycharmProjects/IDLGenerator/IDLParser/parser.py',102),
+  ('function_list -> function','function_list',1,'p_function_list','/home/maluuba/PycharmProjects/IDLGenerator/IDLParser/parser.py',103),
+  ('service -> Service identifier LCURLY function_list RCURLY','service',5,'p_service','/home/maluuba/PycharmProjects/IDLGenerator/IDLParser/parser.py',110),
+  ('document -> enum','document',1,'p_document','/home/maluuba/PycharmProjects/IDLGenerator/IDLParser/parser.py',114),
+  ('document -> struct','document',1,'p_document','/home/maluuba/PycharmProjects/IDLGenerator/IDLParser/parser.py',115),
+  ('document -> service','document',1,'p_document','/home/maluuba/PycharmProjects/IDLGenerator/IDLParser/parser.py',116),
+  ('document -> document document','document',2,'p_document','/home/maluuba/PycharmProjects/IDLGenerator/IDLParser/parser.py',117),
 ]
