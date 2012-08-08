@@ -1,4 +1,4 @@
-package {$package};
+package {{ package }};
 
 import java.util.List;
 import java.util.Map;
@@ -10,14 +10,14 @@ import org.maluuba.service.runtime.common.RequestInfo;
 
 
 
-public class {$capitalized_name}Url extends GenericUrl {
-  public {$capitalized_name}Url(String encodedUrl) {
+public class {{ type.capitalize() }}Url extends GenericUrl {
+  public {{ type.capitalize() }}Url(String encodedUrl) {
     super(encodedUrl);
   }
 
-  {% for param in params %}
+  {% for fieldType, fieldRealType, fieldMeta, fieldName in fields %}
       @com.google.api.client.util.Key
-      public {$param.type} {$param.name};
+      public {{ fieldType }} {{ fieldType }};
   {% endfor %}
 
   @com.google.api.client.util.Key

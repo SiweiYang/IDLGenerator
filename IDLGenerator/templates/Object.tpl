@@ -1,31 +1,14 @@
-package {$package};
+package {{ package }};
 
 {% for import in imports %}
-  import {$import};
+  import {{ import }};
 {% endfor %}
 
 import java.util.*;
 import org.maluuba.service.runtime.common.Action;
 
-{% if persistent %}
-  {% if persistent[1] == 'dynamo' %}
-    import com.amazonaws.services.dynamodb.datamodeling.DynamoDBTable;
-    import com.amazonaws.services.dynamodb.datamodeling.DynamoDBAttribute;
-    import com.amazonaws.services.dynamodb.datamodeling.DynamoDBHashKey;
-    import com.amazonaws.services.dynamodb.datamodeling.DynamoDBRangeKey;
-
-    @DynamoDBTable(tableName="{{ persistent[0] }}")
-  {% elif persistent[1] == 'mongo' %}
-    import com.google.code.morphia.annotations.Entity;
-    import com.google.code.morphia.annotations.Embedded;
-    import com.google.code.morphia.annotations.Id;
-    import com.google.code.morphia.annotations.Indexed;
-    import com.google.code.morphia.annotations.Property;
-
-    @Entity(value="{{ persistent[0] }}", noClassnameStored=true)
-  {% if endif %}
-{% endif %}
-
+{% block class_anootation %}
+{% endblock %}
 @JsonAutoDetect
 public class {{ type }} {
   {% for fieldType, fieldRealType, fieldMeta, fieldName in fields %}
@@ -45,7 +28,7 @@ public class {{ type }} {
   public {{ type }}() {
   }
 
-  public {{ type }}({{helper.parameterList(fields)}})
+  public {{ type }}({{ helper.parameterList(fields) }})
     {% for fieldType, fieldRealType, fieldMeta, fieldName in fields %}
       this.{{ fieldName }} = {{ fieldName }};
     {% endfor %}
@@ -71,58 +54,26 @@ public class {{ type }} {
   /**
      * Accessor for each field
      */
-  {% for field in fields %}
-    {% if persistent == "true" %}
-      {% if provider == "dynamo" %}
-        {% if field.hash_index == "true" %}
-          @DynamoDBHashKey(attributeName="{$field.name}")
-        {% endif %}
-        {% if field.range_index == "true" %}
-          @DynamoDBRangeKey(attributeName="{$field.name}")
-        {% endif %}
-        {% if field.no_index == "true" %}
-          @DynamoDBAttribute(attributeName="{$field.name}")
-        {% endif %}
-      {% endif %}
-    {% endif %}
-    
-    {% if persistent == "true" %}
-      {% if provider == "mongo" %}
-        {% if field.id_index == "true" %}
-          @JsonProperty("_id")
-        {% endif %}
-        {% if field.id_index == "false" %}
-          @JsonProperty("{$field.name}")
-        {% endif %}
-      {% endif %}
-    {% endif %}
-    public {$field.type} get{$field.capitalized_name}() {
-      return this.{$field.name};
+{% block class_accessor %}
+  {% for fieldType, fieldRealType, fieldMeta, fieldName in fields %}
+    public {{ fieldType }} get{{ fieldName.capitalize() }}() {
+      return this.{{ fieldName }};
     }
-  
-    {% if persistent == "true" %}
-      {% if provider == "mongo" %}
-        {% if field.id_index == "true" %}
-          @JsonProperty("_id")
-        {% endif %}
-        {% if field.id_index == "false" %}
-          @JsonProperty("{$field.name}")
-        {% endif %}
-      {% endif %}
-    {% endif %}
-    public {$dataTypeName} set{$field.capitalized_name}({$field.type} {$field.name}) {
-      this.{$field.name} = {$field.name};
+
+    public {{ fieldType }} set{{ fieldName.capitalize() }}({{ fieldType }} {{ fieldName }}) {
+      this.{{ fieldName }} = {{ fieldName }};
       return this;
     }
   {% endfor %}
+{% endblock %}
 
   @Override
   public boolean equals(Object that) {
     if (that == null) {
       return false;
     }
-    if (that instanceof {$dataTypeName}) {
-      return this.equals(({$dataTypeName}) that);
+    if (that instanceof {{ type }}) {
+      return this.equals(({{ type }}) that);
     }
     return false;
   }
