@@ -1,9 +1,12 @@
 #!/usr/bin/env python
 __author__ = 'maluuba'
+from re import compile
 from ply.lex import lex
 
 reserved = {
   "namespace"   : 'namespace',
+  "require"     : 'require',
+  "java"        : 'java',
   "include"     : 'include',
   "import"      : 'import',
   "void"        : 'void',
@@ -32,7 +35,6 @@ tokens = list(reserved.values()) + [
   'identifier',
 #  'whitespace',
 #  'sillycomm',
-#  'multicomm',
 #  'doctext',
 #  'comment',
 #  'unixcomment',
@@ -58,7 +60,6 @@ def t_identifier(t):
 t_intconstant   = r'[+-]?[0-9]+'
 #t_whitespace    = r'[ \t\r\n]+'
 #t_sillycomm     = r'"/*""*"*"*/"'
-#t_multicomm     = r'/*"[^*]"/"*([^*/]|[^*]"/"|"*"[^/])*"*"*"*/"'
 #t_doctext       = r'"/**"([^*/]|[^*]"/"|"*"[^/])*"*"*"*/"'
 #t_comment       = r'//[^\n]*'
 #t_unixcomment   = r'\#[^\n]*'
@@ -74,8 +75,17 @@ t_GT            = r'>'
 t_LT            = r'<'
 #t_symbol        = r'[:;\,\{\}\(\)\=<>\[\]]'
 
+#t_ignore        = '[ \t\r\n]+'
 t_ignore        = '[ \t\r\n]+'
 
 lexer = lex()
 
+def filterMultilineComment(str):
+  t_multicomm     = r'/\*([^*]*\*)(([^*/][^*]*)?\*)*/'
+  p = compile(t_multicomm)
+  return p.sub(' ', str)
 
+def filterInlineComment(str):
+  t_singlecomm     = r'//[^\n]*'
+  p = compile(t_singlecomm)
+  return p.sub(' ', str)
