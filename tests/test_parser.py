@@ -42,7 +42,7 @@ class ParserTestSuite(TestSetup, TestBaseMixin, unittest.TestCase):
         self.assertEquals(2, len(ast))
 
         namespace_parse = ast[0]
-        self.assertEquals(('namespace', 'pyidl.example'), namespace_parse)
+        self.assertEquals(('namespace', 'java', 'pyidl.example'), namespace_parse)
 
         struct_parse = ast[1]
         self.assertEquals('struct', struct_parse[0])

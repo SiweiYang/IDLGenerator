@@ -1,13 +1,20 @@
 #!/usr/bin/env python
-from scanner import filterMultilineComment, filterInlineComment
+from scanner import filterMultilineComment, filterInlineComment, supported_languages
 
 __author__ = 'maluuba'
 from scanner import lexer, tokens
 from ply.yacc import yacc
 
+
+def p_namespace_type(p):
+  p[0] = p[1]
+p_namespace_type.__doc__ = 'ns_type : %s' % '\n| '.join(supported_languages.values())
+
+
 def p_namespace(p):
-  'ns : namespace java identifier'
-  p[0] = (p[1], p[3])
+  'ns : namespace ns_type identifier'
+  p[0] = (p[1], p[2], p[3])
+
 
 def p_require(p):
   'req : require identifier'

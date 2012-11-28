@@ -3,11 +3,27 @@ __author__ = 'maluuba'
 from re import compile
 from ply.lex import lex
 
-reserved = {
+supported_languages = {
+  "as3": "as3",
+  "c_glib": "c_glib",
+  "cpp": "cpp",
+  "csharp": "csharp",
+  "erl": "erl",
+  "hs": "hs",
+  "java": "java",
+  "js": "js",
+  "cocoa": "cocoa",
+  "ocaml": "ocaml",
+  "perl": "perl",
+  "php": "php",
+  "py": "py",
+  "rb": "rb",
+  "st": "st"
+}
+
+reserved = dict(supported_languages.items() + {
   "namespace"   : 'namespace',
   "require"     : 'require',
-  "java"        : 'java',
-  "cpp"         : 'cpp',
   "include"     : 'include',
   "import"      : 'import',
   "void"        : 'void',
@@ -29,7 +45,7 @@ reserved = {
   "identifier"  : 'Identifier',
   "index"       : 'Index',
   "range-index" : 'RangeIndex'
-}
+}.items())
 
 tokens = list(reserved.values()) + [
   'intconstant',
