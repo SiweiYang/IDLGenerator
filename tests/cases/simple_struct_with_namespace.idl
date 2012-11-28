@@ -1,0 +1,6 @@
+namespace java pyidl.example
+
+struct RequestObject {
+    1: string someRequest,
+    2: double someValue
+}
