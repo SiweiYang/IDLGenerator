@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-from IDLParser.scanner import filterMultilineComment, filterInlineComment
+from scanner import filterMultilineComment, filterInlineComment
 
 __author__ = 'maluuba'
 from scanner import lexer, tokens

@@ -2,7 +2,7 @@ __author__ = 'maluuba'
 from os.path import join
 from jinja2 import Template, Environment, PackageLoader
 
-import IDLGenerator
+import generator
 
 env = Environment(loader=PackageLoader('IDLGenerator', 'templates'))
 def loadTemplate(name):

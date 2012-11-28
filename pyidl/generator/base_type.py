@@ -1,8 +1,8 @@
-from IDLGenerator import util
+from generator import util
 
 __author__ = 'maluuba'
 from sys import stdout
-from IDLGenerator.generator import loadTemplate
+from generator.generator import loadTemplate
 
 class BaseType:
   def __init__(self, package, type, imports = [], fields = [], persistent = ()):

@@ -3,3 +3,6 @@
 *\.pyc
 *parser.out
 *parsetab.py
+
+*.sublime-project
+*.sublime-workspace

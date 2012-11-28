@@ -7,6 +7,7 @@ reserved = {
   "namespace"   : 'namespace',
   "require"     : 'require',
   "java"        : 'java',
+  "cpp"         : 'cpp',
   "include"     : 'include',
   "import"      : 'import',
   "void"        : 'void',
@@ -48,9 +49,10 @@ tokens = list(reserved.values()) + [
   'ASSIGN',
   'LT',
   'GT',
-
+  'QUOTATION',
 #  'symbol'
 ]
+
 
 def t_identifier(t):
   r'[a-zA-Z_][\-\.a-zA-Z_0-9]*'
@@ -64,15 +66,16 @@ t_intconstant   = r'[+-]?[0-9]+'
 #t_comment       = r'//[^\n]*'
 #t_unixcomment   = r'\#[^\n]*'
 t_SEMICOLON     = r':'
-t_COLON     = r';'
+t_COLON         = r';'
 t_COMMA         = r','
-t_LPAREN         = r'\('
-t_RPAREN         = r'\)'
-t_LCURLY         = r'{'
-t_RCURLY         = r'}'
+t_LPAREN        = r'\('
+t_RPAREN        = r'\)'
+t_LCURLY        = r'{'
+t_RCURLY        = r'}'
 t_ASSIGN        = r'\='
 t_GT            = r'>'
 t_LT            = r'<'
+t_QUOTATION     = r'"'
 #t_symbol        = r'[:;\,\{\}\(\)\=<>\[\]]'
 
 #t_ignore        = '[ \t\r\n]+'
