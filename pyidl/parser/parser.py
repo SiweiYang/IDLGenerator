@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+import ast
 from scanner import filterMultilineComment, filterInlineComment, supported_languages
 
 __author__ = 'maluuba'
@@ -57,14 +58,14 @@ def p_enum_list(p):
                | enum_list COMMA assignment
                | enum_list COMMA identifier'''
   if len(p) == 2:
-    p[0] = [p[1]]
+    p[0] = [(p[1], None) if type(p[1]) == str else p[1]]
   if len(p) == 4:
-    p[0] = p[1] + [p[3]]
+    p[0] = p[1] + [(p[3], None) if type(p[3]) == str else p[3]]
 
 
 def p_enum(p):
   '''enum : Enum identifier LCURLY enum_list RCURLY'''
-  p[0] = ('enum', p[2], p[4])
+  p[0] = ast.t_enum(p[2], p[4])
 
 
 def p_type(p):
@@ -142,9 +143,9 @@ def p_struct_basic(p):
   '''struct : struct_annotation LCURLY RCURLY
             | struct_annotation LCURLY declaration_list RCURLY'''
   if len(p) == 4:
-    p[0] = ('struct', p[1], [])
+    p[0] = ast.t_struct(p[1])
   if len(p) == 5:
-    p[0] = ('struct', p[1], p[3])
+    p[0] = ast.t_struct(p[1], p[3])
 
 
 def p_function_basic(p):

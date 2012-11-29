@@ -1,0 +1,5 @@
+enum SomeSet {
+    A = 1,
+    B,
+    C = 4
+}
