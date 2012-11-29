@@ -14,7 +14,7 @@ p_namespace_type.__doc__ = 'ns_type : %s' % '\n| '.join(supported_languages.valu
 
 def p_namespace(p):
   'ns : namespace ns_type identifier'
-  p[0] = (p[1], p[2], p[3])
+  p[0] = ast.t_namespace(p[2], p[3])
 
 
 def p_require(p):
@@ -57,6 +57,9 @@ def p_enum_list(p):
                | identifier
                | enum_list COMMA assignment
                | enum_list COMMA identifier'''
+
+  # Assignments are represented as (identifier, value). For the sake
+  # of consistency, we also represent non-assigned enums as (identifier, None)
   if len(p) == 2:
     p[0] = [(p[1], None) if type(p[1]) == str else p[1]]
   if len(p) == 4:
@@ -191,23 +194,25 @@ def p_service(p):
   p[0] = ('service', p[2], p[4])
 
 
-def p_document(p):
-  '''document : ns
-              | req
-              | enum
-              | struct
-              | service
-              | document document'''
-  if len(p) == 2:
-    p[0] = [p[1]]
-  if len(p) == 3:
-    p[0] = p[1] + p[2]
+def p_program(p):
+  '''program : ns
+             | req
+             | enum
+             | struct
+             | service
+             | program program'''
+  if (type(p[1]) == ast.t_program):
+    p[0] = ast.t_program(**{
+      key: (getattr(p[1], key, []) + getattr(p[2], key, [])) for key in ('_t_program__ns', 'require', 'enum', 'struct', 'service')
+    })
+  else:
+    p[0] = ast.t_program(**{p[1].__type__: [p[1]]})
 
 
 def p_error(t):
   print("Syntax error at '%s'" % t.value)
 
-start = 'document'
+start = 'program'
 parser = yacc()
 
 
